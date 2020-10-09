@@ -1,0 +1,23 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "bin": {
+    "express": "www.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config-lite": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "os": "^0.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server:localhost": "cross-env NODE_ENV=localhost node ./bin/www.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

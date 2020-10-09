@@ -1,0 +1,11 @@
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+.vscode
+.idea
+emptyDir
+clearnode_modules.bat
+node_modules
+dist
+build

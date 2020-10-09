@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="http://www.cqnews.net/js/jquery.min.js"></script>
+    </head>
+    <body>
+        加载正确1<br>
+        https://www.cnblogs.com/qiu2841/p/7903103.html
+        <!--form method="post" action="http://localhost:18888/post">
+            <label for="id1"></label>
+            <input type="checkbox" name="duoxuan" id="id1">
+            <input type="checkbox" name="duoxuan" id="id2">
+
+            <input type="radio" name="danxuan">
+            <input type="radio" name="danxuan">
+
+            <input type="submit" name="btn">
+        </form-->
+        <script>
+        // $.ajax({
+        //     url:"http://localhost:8082/post",
+        //     data:{"x":1},
+        //     dataType:"json",
+        //     type:"post",
+        //     success:function(e){
+        //         console.log(e);
+        //     },
+        //     error:function(e){
+        //         console.log(e);
+        //     }
+        // });
+        $.ajax({
+            url:`http://<%= process.env.host %>:8082/get`,
+            data:{name:'松松',age:28},
+            dataType:"json",
+            type:"get",
+            success:function(e){
+                console.log(e);
+            },
+            error:function(e){
+                console.log(e);
+            }
+        });
+        </script>
+    </body>
+</html>
