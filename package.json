@@ -16,7 +16,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "server:localhost": "cross-env NODE_ENV=localhost node ./bin/www.js"
+    "server:localhost": "cross-env NODE_ENV=localhost node ./bin/www.js",
+    "_comment":"如果使用PM2配置文件启动，NODE_ENV就不起作用，直接在pm2中配置就可以了。"
   },
   "author": "",
   "license": "ISC"

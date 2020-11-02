@@ -31,6 +31,7 @@
         //         console.log(e);
         //     }
         // });
+        console.log(`<%= process.env.host %>`)
         $.ajax({
             url:`http://<%= process.env.host %>:8082/get`,
             data:{name:'松松',age:28},

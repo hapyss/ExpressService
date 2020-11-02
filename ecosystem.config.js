@@ -1,7 +1,9 @@
+//PM2启动配置文件。
 const os = require('os');//获取本机ip地址模块
 ///获取本机ip///
 function getIPAdress() {
     var interfaces = os.networkInterfaces();
+    console.log('ip地址群：'+JSON.stringify(interfaces))
     for (var devName in interfaces) {
         var iface = interfaces[devName];
         for (var i = 0; i < iface.length; i++) {
