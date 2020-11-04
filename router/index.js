@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 var data = {x:1,y:2}
 const UserInfo = require("../mockdata/UserInfo");
+
+const answer = require("./answer.js");
+
 router.get("/",function(req,res){
     //res.end("router right");
     res.render("index");
@@ -17,5 +20,7 @@ router.get("/get",function(req,res){
     console.log(req.query);
     res.send(UserInfo);
 });
+
+router.use("/answer",answer);
 
 module.exports = router;
