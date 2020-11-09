@@ -2,33 +2,42 @@ var express = require("express");
 var router = express.Router();
 
 const answer = require("../mockdata/answer");
+const compare = require("../common_function/compare");
+const getRandomArrayElements = require("../common_function/getRandomArrayElements")
 
-function getRandomArrayElements(arr, count) {
-    var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
-    while (i-- > min) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    };
-    return shuffled.slice(min);
-}
-let wenti = answer.data_wenti;
-let wentiattr = [];
-for(key in wenti){
-    wentiattr.push(key)
-};
-function test(){
-    let _wentiattr = getRandomArrayElements(wentiattr, 3);
-    let senddata = {};
-    for(let i = 0; i < _wentiattr.length; i++){
-        senddata[_wentiattr[i]] = wenti[_wentiattr[i]];
-    };
-    return senddata;
-}
-
+let _wenti = [...answer];
+let _wenti_obj = {};
+//把数组题组合为对象。
+answer.forEach((val, index)=>{
+    _wenti_obj['data'+index] = {...val};
+    if(val.picked.constructor === Number){
+        _wenti[index].picked = -1;
+    }else{
+        _wenti[index].picked = [];
+    }
+});
+//前端获取答案列表
 router.get("/",function(req,res){
-    res.send(test());
+    res.send(getRandomArrayElements(_wenti, 2));
+});
+//前端提交答案进行验证
+router.get("/sub",function(req,res){
+    let RstNum = 0;
+    let req_wenti = req.query.answers;
+    req_wenti.forEach((val, index)=>{
+        let _val = JSON.parse(val)
+        if(_val.picked.constructor == Array){
+            _val.picked.sort();
+            if(compare(_val.picked, _wenti_obj["data"+_val.id].picked)){
+                RstNum++;
+            }
+        }else{
+            if(_val.picked == _wenti_obj["data"+_val.id].picked){
+                RstNum++;
+            }
+        }
+    });
+    res.send(String(RstNum));
 });
 
 module.exports = router;
